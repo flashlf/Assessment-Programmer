@@ -31,7 +31,7 @@ a, a:active, a:link, a:visited {
 }
 
 a.blog-header-logo, a:link.blog-header-logo, a:visited.blog-header-logo
-a:active.blog-header-logo, .card-film-caption {
+a:active.blog-header-logo{
     color: rgb(214,159,93);
 }
 
@@ -105,6 +105,17 @@ a:active.blog-header-logo, .card-film-caption {
     min-height: 400px;
     color: rgb(2, 6, 23);
 }
+.card-film-rating {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 1.25em;
+    font-weight: 600;
+    background-color: black;
+    color: rgb(214,159,93);
+    padding: 15px 10px;
+}
+
 .card-film > img {
     border-radius: 15px;
     height: 400px;
@@ -126,5 +137,6 @@ a:active.blog-header-logo, .card-film-caption {
 }
 
 .card-film-caption {
-    font-weight: 600;
+    font-weight: 500;
+    color: white;
 }
