@@ -7,8 +7,14 @@ body {
     background-color: rgb(2, 6, 23);
 }
 
-h1, h2, h3, h4, h5, h6, .blog-header-logo  {
+h1, h2, h3, h4, h5, h6 {
     font-family: "DM Serif Text", sans-serif;
+    color: rgb(214,159,93)
+}
+
+.blog-header-logo  {
+    font-family: "Playfair Display", sans-serif;
+    font-weight: bold;
     color: rgb(214,159,93)
 }
 
@@ -56,6 +62,7 @@ a:active.blog-header-logo {
     border-bottom: 1px solid #0a58ca;
     animation: animate 1s infinite cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+
 @keyframes animate {
     0% {
         left: -5px;
@@ -82,7 +89,7 @@ a:active.blog-header-logo {
 }
 
 .carousel-caption {
-    background-color: black;
+    background-color: rgba(0,0,0,.7);
     border-radius: 50px;
 }
 .content {
