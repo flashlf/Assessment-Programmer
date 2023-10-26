@@ -1,0 +1,78 @@
+/*
+    Basic Element Tag
+*/
+body {
+    font-family: "Titillium Web", Helvetica, Arial;
+    color: rgb(224,233,230);
+    background-color: rgb(2, 6, 23);
+}
+
+h1, h2, h3, h4, h5, h6, .blog-header-logo  {
+    font-family: "DM Serif Text", sans-serif;
+    color: rgb(214,159,93)
+}
+
+a, a:active, a:link, a:visited {
+    text-decoration: none;
+}
+
+/**
+    Custom CSS Here
+*/
+.blog-header-logo {
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+a.blog-header-logo, a:link.blog-header-logo, a:visited.blog-header-logo
+a:active.blog-header-logo {
+    color: rgb(214,159,93);
+}
+
+.nav-scroller::before {
+    content: " ";
+    display: block;
+    width: 100%;
+    height: auto;
+    border-top: 1px solid rgb(95, 95, 95);
+}
+.nav a {
+    position: relative;
+    border-bottom: 0px;    
+}
+
+.nav a:not(.text-muted)::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0px; /* Atur ketebalan garis bawah sesuai keinginan Anda */
+    background-color: #0a58ca; /* Atur warna garis bawah */
+    bottom: 0;
+    left: 0;
+}
+
+.nav a:hover:not(.text-muted)::before {
+    height: 1px;
+    border-bottom: 1px solid #0a58ca;
+    animation: animate 1s infinite cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+@keyframes animate {
+    0% {
+        left: -5px;
+    }
+    50% {
+        left: 5px;
+    }
+    100% {
+        left: -5px;
+    }
+}
+
+.carousel {
+
+}
+
+.content {
+    min-height: 1000px;
+    width: 100%;
+}
