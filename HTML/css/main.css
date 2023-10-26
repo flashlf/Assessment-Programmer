@@ -224,3 +224,11 @@ footer li.phone:before {
 .copyright p > i {
     color: #FEB139;
 }
+
+/* Tanpa Bootstrap Framework */
+.container-payment {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
