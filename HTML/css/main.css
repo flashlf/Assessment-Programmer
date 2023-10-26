@@ -171,3 +171,56 @@ table.seating td:hover {
     background-color: white;
     color: black;
 }
+
+/* Footer Disini */
+footer {
+    background: black;
+    color: #EEEEEE;
+    padding: 70px 0 0 0;
+    font-weight: 100;
+}
+footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 {
+    color:#FEB139;
+    letter-spacing: 1pt;
+}
+footer p > b {
+    font-weight: 600;
+} 
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer li {
+    padding-left: 1.3em;
+    margin-right: 1em;
+}
+footer li.email:before {
+    content: "\f0e0"; /* FontAwesome Unicode */
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-left: -1.3em; /* same as padding-left set on li */
+    width: 1.3em; /* same as padding-left set on li */
+}
+footer li.phone:before {
+    content: "\f098"; /* FontAwesome Unicode */
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-left: -1.3em; /* same as padding-left set on li */
+    width: 1.3em; /* same as padding-left set on li */
+}
+
+.copyright {
+    padding: 20px 0 10px 0;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+}
+.copyright p {
+   text-align: center;
+   font-size: small; 
+   font-weight: 100;
+}
+.copyright p > i {
+    color: #FEB139;
+}
