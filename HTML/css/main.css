@@ -31,7 +31,7 @@ a, a:active, a:link, a:visited {
 }
 
 a.blog-header-logo, a:link.blog-header-logo, a:visited.blog-header-logo
-a:active.blog-header-logo {
+a:active.blog-header-logo, .card-film-caption {
     color: rgb(214,159,93);
 }
 
@@ -95,4 +95,36 @@ a:active.blog-header-logo {
 .content {
     min-height: 1000px;
     width: 100%;
+}
+
+.card-film {
+    position: relative;
+    border-radius: 15px;
+    background-color: rgba(255,255,255,.9);
+    width: 100%;
+    min-height: 400px;
+    color: rgb(2, 6, 23);
+}
+.card-film > img {
+    border-radius: 15px;
+    height: 400px;
+    width: 100%;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+.card-film-detail {
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 150px;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(0,0,0,.9);
+}
+
+.card-film-caption {
+    font-weight: 600;
 }
