@@ -284,3 +284,7 @@ footer li.phone:before {
     bottom: 0;
     cursor: pointer;
 }
+
+.gradient {
+    background-image: linear-gradient(to right top, #30cfd0 0%, #330867 100%);
+}
