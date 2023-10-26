@@ -145,3 +145,29 @@ a:active.blog-header-logo{
     color: rgb(2, 6, 23);
     background-color: white;;
 }
+
+table.seating {
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+
+table.seating td {
+    padding: 10px;
+    text-align: center;
+    height: 64px;
+    width: 64px;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+table.seating td:hover {
+    background-color: white;
+    color: black;
+    transition: 0.75s ease-in;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: white;
+    color: black;
+}
