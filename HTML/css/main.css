@@ -140,3 +140,8 @@ a:active.blog-header-logo{
     font-weight: 500;
     color: white;
 }
+
+.content .post {
+    color: rgb(2, 6, 23);
+    background-color: white;;
+}
