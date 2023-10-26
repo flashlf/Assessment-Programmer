@@ -16,7 +16,41 @@
     </head>
     <body>
         <div class="container-payment">
-            Pembayaran
+            <div class="card-payment">
+                <h2 style="margin-top:10px; margin-bottom:5px; padding-bottom:0px;">Payment Gateway</h2>
+                <small style="color:gray;">Choose your Payment. <i>*Prefered M-Banking for faster process</i></small>
+
+                <form style="margin-top: 40px;">
+                    <table style="width: 100%; height: auto;">
+                        <tr>
+                            <td style="width: 50%; vertical-align: top;">
+                                <h3>Summary</h3>
+                                <b>Product : </b><span style="color:green;" id="filmName">The Fall of the House of Usher</span><br>
+                                <b>Price : </b><span style="color:green;" id="ticketPrice">Rp.125.000</span><br>
+                                <b>Seat : </b><span style="color:darkgreen;" id="seatNumber">B1</span><br>
+                                <small><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Nullam pellentesque dapibus nisl.
+                                    Sed semper, augue nec euismod accumsan, velit tellus laoreet ante,
+                                    dapibus varius ante nulla posuere est.
+                                    Aenean ultrices quam vel felis ornare lacinia...</p></small>
+                            </td>
+                            <td style="width: 50%; vertical-align: top;">
+                                <div style="margin-top: 50px;">
+                                    <input class="block" type="text" placeholder="CARD NUMBER">
+                                    <input class="block" type="text" placeholder="MM / YY">
+                                    <input class="block" type="password" placeholder="CVC Code"><br>
+                                    <a class="btn">Submit</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="action">
+                        <a href="seating.html">Click Here to cancel payment...</a>
+                    </div>
+                </form>
+                
+            </div>
         </div>
 
     </body>

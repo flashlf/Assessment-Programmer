@@ -232,3 +232,55 @@ footer li.phone:before {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.card-payment {
+    position: relative;
+    height: 480px;
+    width: 680px;
+    padding: 20px;
+    padding-left: 40px;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+}
+
+.card-payment h3, .card-payment h4, .card-payment h5,
+.card-payment h6 {
+    color: black;
+    font-weight: 400;
+}
+.card-payment input {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    display: inline-flexbox;
+}
+
+.block {
+    width: 80%;
+}
+
+.card-payment .btn {
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 22px;
+    background-color: gray;
+    width: 80%;
+    transition: 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card-payment .btn:hover {
+    background-color: black;
+    color: rgb(214,159,93);
+    cursor: pointer;
+}
+
+.card-payment .action {
+    position: absolute;
+    height: 60px;
+    width: 100%;
+    bottom: 0;
+    cursor: pointer;
+}
