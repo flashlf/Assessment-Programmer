@@ -1,0 +1,312 @@
+/*
+    Basic Element Tag
+*/
+body {
+    font-family: "Titillium Web", Helvetica, Arial;
+    color: rgb(224,233,230);
+    background-color: rgb(2, 6, 23);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "DM Serif Text", sans-serif;
+    color: rgb(214,159,93)
+}
+
+.blog-header-logo  {
+    font-family: "Playfair Display", sans-serif;
+    font-weight: bold;
+    color: rgb(214,159,93)
+}
+
+a, a:active, a:link, a:visited {
+    text-decoration: none;
+}
+
+/**
+    Custom CSS Here
+*/
+.blog-header-logo {
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+a.blog-header-logo, a:link.blog-header-logo, a:visited.blog-header-logo
+a:active.blog-header-logo{
+    color: rgb(214,159,93);
+}
+
+.nav-scroller::before {
+    content: " ";
+    display: block;
+    width: 100%;
+    height: auto;
+    border-top: 1px solid rgb(95, 95, 95);
+}
+.nav a {
+    position: relative;
+    border-bottom: 0px;    
+}
+
+.nav a:not(.text-muted)::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0px; /* Atur ketebalan garis bawah sesuai keinginan Anda */
+    background-color: #0a58ca; /* Atur warna garis bawah */
+    bottom: 0;
+    left: 0;
+}
+
+.nav a:hover:not(.text-muted)::before {
+    height: 1px;
+    border-bottom: 1px solid #0a58ca;
+    animation: animate 1s infinite cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@keyframes animate {
+    0% {
+        left: -5px;
+    }
+    50% {
+        left: 5px;
+    }
+    100% {
+        left: -5px;
+    }
+}
+
+.carousel {
+    width: 100%;
+    height: 500px;
+    border-radius: 5px;
+}
+.carousel-item > img {
+    border-radius: 10px;
+    height: 500px !important;
+    width: 100%;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+.carousel-caption {
+    background-color: rgba(0,0,0,.7);
+    border-radius: 50px;
+}
+
+.content {
+    min-height: 400px;
+    width: 100%;
+}
+
+.todolist {
+    margin-top: 1rem;
+    min-height: 300px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.todos {
+    max-width: 400px;
+    min-width: 360px;
+    max-height: 70vh;
+    min-height: 100px;
+    border-radius: 15px;
+    background-color: white;
+    color: black;
+    position: relative;
+    display: inline-block;
+    margin-right: 2rem;
+    white-space: wrap;
+}
+
+.card-film {
+    position: relative;
+    border-radius: 15px;
+    background-color: rgba(255,255,255,.9);
+    width: 100%;
+    min-height: 400px;
+    color: rgb(2, 6, 23);
+}
+.card-film-rating {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 1.25em;
+    font-weight: 600;
+    background-color: black;
+    color: rgb(214,159,93);
+    padding: 15px 10px;
+}
+
+.card-film > img {
+    border-radius: 15px;
+    height: 400px;
+    width: 100%;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+.card-film-detail {
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 150px;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(0,0,0,.9);
+}
+
+.card-film-caption {
+    font-weight: 500;
+    color: white;
+}
+
+.content .post {
+    color: rgb(2, 6, 23);
+    background-color: white;;
+}
+
+table.seating {
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+
+table.seating td {
+    padding: 10px;
+    text-align: center;
+    height: 64px;
+    width: 64px;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+table.seating td:hover {
+    background-color: white;
+    color: black;
+    transition: 0.75s ease-in;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: white;
+    color: black;
+}
+
+/* Footer Disini */
+footer {
+    background: black;
+    color: #EEEEEE;
+    padding: 70px 0 0 0;
+    font-weight: 100;
+}
+footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 {
+    color:#FEB139;
+    letter-spacing: 1pt;
+}
+footer p > b {
+    font-weight: 600;
+} 
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer li {
+    padding-left: 1.3em;
+    margin-right: 1em;
+}
+footer li.email:before {
+    content: "\f0e0"; /* FontAwesome Unicode */
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-left: -1.3em; /* same as padding-left set on li */
+    width: 1.3em; /* same as padding-left set on li */
+}
+footer li.phone:before {
+    content: "\f098"; /* FontAwesome Unicode */
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-left: -1.3em; /* same as padding-left set on li */
+    width: 1.3em; /* same as padding-left set on li */
+}
+
+.copyright {
+    padding: 20px 0 10px 0;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+}
+.copyright p {
+   text-align: center;
+   font-size: small; 
+   font-weight: 100;
+}
+.copyright p > i {
+    color: #FEB139;
+}
+
+/* Tanpa Bootstrap Framework */
+.container-payment {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card-payment {
+    position: relative;
+    height: 480px;
+    width: 680px;
+    padding: 20px;
+    padding-left: 40px;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+}
+
+.card-payment h3, .card-payment h4, .card-payment h5,
+.card-payment h6 {
+    color: black;
+    font-weight: 400;
+}
+.card-payment input {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    display: inline-flexbox;
+}
+
+.block {
+    width: 80%;
+}
+
+.card-payment .btn {
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 22px;
+    background-color: gray;
+    width: 80%;
+    transition: 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card-payment .btn:hover {
+    background-color: black;
+    color: rgb(214,159,93);
+    cursor: pointer;
+}
+
+.card-payment .action {
+    position: absolute;
+    height: 60px;
+    width: 100%;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.gradient {
+    background-image: linear-gradient(to right top, #30cfd0 0%, #330867 100%);
+}
