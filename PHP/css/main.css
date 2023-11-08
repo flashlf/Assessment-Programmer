@@ -157,7 +157,9 @@ a:active.blog-header-logo{
     padding: 20px;
     background-color: rgba(0,0,0,.9);
 }
-
+.modal {
+    color:black !important;
+}
 .card-film-caption {
     font-weight: 500;
     color: white;

@@ -18,10 +18,10 @@ Belum dicatet udah kelewat
 Membuat program untuk todolist dengan fitur CRUD, detail item pada point todo list
 ### Todo List PHP
 - [x] Login Page (index utama modal login dan signup)
-- [ ] Feature Cookie untuk Login
-- [ ] Object Oriented
-    - [ ] Namespace
-    - [ ] Magic method
+- [x] Feature Cookie untuk Login
+- [x] Object Oriented
+    - [x] Namespace
+    - [x] Magic method
     - [ ] Overidding Method
     - [ ] Interface & Abstract
     - [ ] Collection

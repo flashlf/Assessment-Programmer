@@ -80,7 +80,7 @@
                             
                             <p>the page you are looking for not avaible!</p>
                             
-                            <?php 
+                            <?php
                                 if(isset($_SERVER['HTTP_REFERER'])) {
                             ?>
                             <a href="<?= $_SERVER['HTTP_REFERER'] ?>" class="link_404">Back to Previous Page</a> &nbsp;

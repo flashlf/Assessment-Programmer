@@ -1,5 +1,13 @@
 <?php
     require_once "../config/config.php";
+
+    if (isset($_COOKIE["user_info"])) {
+        $user_info = $_COOKIE["user_info"];
+        
+        // Membagi string menjadi informasi terpisah
+        list($user_id, $username, $name) = explode("|", $user_info);
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -26,7 +34,7 @@
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-betwen align-items-center">
-                    <div class="col-4 pt-1">Logo Here</div>
+                    <div class="col-4 pt-1">Welcome <?= $name ?? 'ADUL'?></div>
                     <div class="col-4 pt-1 text-center">
                         <a href="index.html" class="blog-header-logo">Todo App</a>
                     </div>
@@ -56,7 +64,7 @@
             </div>
 
             <div class="content">
-                <h2 class="mt-5"><?= $data['name'] ?? 'ADUL'?> Todos</h2>
+                <h2 class="mt-5"><?= $name ?? 'ADUL'?> Todos</h2>
 
                     <div class="todolist" id="todoList">
 

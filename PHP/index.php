@@ -1,6 +1,10 @@
 <?php
     require_once "config/config.php";
 
+    spl_autoload_register(function($className){
+        require_once 'todo/model/' . $className . '.php';
+    });
+
     function getUrl() {
         if (isset($_GET['url'])) {
             $url = rtrim($_GET['url'], '/');
@@ -9,6 +13,15 @@
 
             return $url;
         }
+    }
+
+    if (isset($_COOKIE["user_info"])) {
+        $user_info = $_COOKIE["user_info"];
+        
+        // Membagi string menjadi informasi terpisah
+        list($user_id, $username, $name) = explode("|", $user_info);
+    
+        header("Location: ".URLROOT."/todo");
     }
 
     if (!empty($_SERVER['REQUEST_URI']) && strlen($_SERVER['REQUEST_URI']) > 1) {
@@ -25,6 +38,8 @@
             header("Location: ".URLROOT."/404");
         }
     }
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -129,14 +144,24 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form>
+                <form method="POST" action="<?= URLROOT ?>/todo/user">
 
                     <div class="modal-body">
-                        ...
+                    <div class="form-outline mb-4">
+                        <input type="hidden" name="code" value="login" class="form-control" />
+                        <input type="text" id="loginName" name="username" class="form-control" />
+                        <label class="form-label" for="loginName">Email or username</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="loginPassword" name="password" class="form-control" />
+                        <label class="form-label" for="loginPassword">Password</label>
+                    </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Login</button>
+                        <button type="submit" class="btn btn-success">Login</button>
                     </div>
                     
                 </form>
@@ -155,14 +180,43 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form>
+                <form method="POST" action="<?= URLROOT ?>/todo/user">
 
                     <div class="modal-body">
-                        ...
+                         <!-- Name input -->
+                        <div class="form-outline mb-4">
+                            <input type="hidden" name="code" value="register" class="form-control" />
+                            <input type="text" id="registerName" name="name" class="form-control" />
+                            <label class="form-label" for="registerName">Name</label>
+                        </div>
+
+                        <!-- Username input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="registerUsername" name="username" class="form-control" />
+                            <label class="form-label" for="registerUsername">Username</label>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="registerEmail" name="email" class="form-control" />
+                            <label class="form-label" for="registerEmail">Email</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="registerPassword" name="password" class="form-control" />
+                            <label class="form-label" for="registerPassword">Password</label>
+                        </div>
+
+                        <!-- Repeat Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="registerRepeatPassword" name="repeat_password" class="form-control" />
+                            <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Signup</button>
+                        <button type="submit" class="btn btn-primary">Signup</button>
                     </div>
 
                 </form>
