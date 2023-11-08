@@ -60,8 +60,14 @@
                         <a class="text-muted" href="#">
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"></circle><path d="M21 21l-5.2-5.2"></path></svg>
                         </a>
-                        <a class="btn btn-sm btn-outline-secondary" href="<?= URLROOT ?>/todo/signup">Sign Up</a>&nbsp;
-                        <a class="btn btn-sm btn-outline-secondary" href="<?= URLROOT ?>/todo/login">Login</a>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalSignup">
+                            Sign Up
+                        </button>&nbsp;
+
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalLogin">
+                            Login
+                        </button>
+
                     </div>
                 </div>
             </header>
@@ -94,7 +100,7 @@
                             <div class="mb-1 text-muted">Nov 12</div>
                             <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
                             <a href="#">Continue reading</a>
-                          </div>                          
+                          </div>
                         </div>
                     </div>
                     
@@ -113,11 +119,63 @@
             </div>
         </div>
 
+        <!-- Modal Login -->
+        <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLoginTitle">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Login</button>
+                    </div>
+                    
+                </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Login End Here -->
+
+        <!-- Modal Login -->
+        <div class="modal fade" id="modalSignup" tabindex="-1" role="dialog" aria-labelledby="modalSignUpTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalSignUpTitle">Sign Up Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Signup</button>
+                    </div>
+
+                </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Login End Here -->
+
         <footer>
             <div class="container mb-5">
                 <div class="row">
                     <div class="col-md-4 col-sm-4 mb-3">
-                        <h4><img class="responsive-image" src="" style="max-width:200px;"></img>Logo here</h4>
+                        <h4><img class="responsive-image" src="" style="max-width:200px;" alt="logo"></img>Logo here</h4>
                         <p><b>Adul Todos Apps</b> adalah perusahaan yang bergerak di bidang Teknologi informasi.
                          Kami telah menyediakan solusi dari hulu sampai hilir yang dapat membantu perusahaan dalam menghadapi tantangan bisnis yang berkembang begitu cepat & dinamis.
                          Saat ini lebih dari 100 proyek IT skala nasional maupun regional yang telah kami kerjakan. Salah satu klien kami dari luar negeri yaitu Telkomcel Timor Leste & Telin Malaysia.</p>
@@ -145,7 +203,7 @@
                         <p>Copyright 2023 Cineas Duasatu &copy;. All rights reserved. <i>Crafted with awesomeness by Adul</i></p>
                     </div>
                 </div>
-            </div>    
+            </div>
         </footer>
     </body>
 
