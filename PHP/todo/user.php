@@ -11,17 +11,54 @@ spl_autoload_register(function($className){
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (isset($_POST['code'])) {
-
         $user = new User();
-        $result = $user->login($_POST);
+        session_start();
+        switch ($_POST['code']) {
+            case "login" :
+                $token = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_SPECIAL_CHARS);
+                if (!$token || $token !== $_SESSION['token']) {
+
+                    header($_SERVER['SERVER_PROTOCOL'] . ' 405 Method Not Allowed'); exit;
+                }
+
+                $result = $user->login($_POST);
+                
+                if (!empty($result)) {
+                    // set Cookie
+                    $user_cookie = "$result->id|$result->code|$result->name";
         
-        if (!empty($result)) {
-            // set Cookie
-            $user_cookie = "$result->id|$result->code|$result->name";
+                    setcookie("user_info", $user_cookie, time() + 3600, "/");
+        
+                    header("Location: ".URLROOT."/todo");
+                } else {
+                    return "User Tidak Terdaftar";
+                }
+                break;
+            case "register" :
+                $token = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            setcookie("user_info", $user_cookie, time() + 3600, "/");
+                if (!$token || $token !== $_SESSION['token']) {
 
-            header("Location: ".URLROOT."/todo");
+                    header($_SERVER['SERVER_PROTOCOL'] . ' 405 Method Not Allowed'); exit;
+                }
+
+                $user->name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
+                $user->code = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+                $user->email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
+                $user->pass = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+
+                $user->save();
+                header("Location: ".URLROOT);
+                break;
+            
+            case "logout" :
+                setcookie("user_info", "", time() - 3600, "/");
+                session_destroy();
+                header("Location: ".URLROOT);
+                break;
+            default:
+                return "Undefined Method";
+                break;
         }
     } else {
         echo "Restricted Access!."; exit;

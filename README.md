@@ -26,9 +26,9 @@ Membuat program untuk todolist dengan fitur CRUD, detail item pada point todo li
     - [ ] Interface & Abstract
     - [ ] Collection
 - [ ] Security
-    - [ ] Handling CSRF
+    - [x] Handling CSRF
     - [ ] Handling XSS
-    - [ ] Handling SQL Injection
+    - [x] Handling SQL Injection
 - [ ] Feature attachment (Validate Size & Extension File)
 - [ ] RESTAPI CRUD Published
     - [ ] Using HTTP Auth (Without Session)

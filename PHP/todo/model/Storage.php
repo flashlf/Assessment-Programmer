@@ -73,7 +73,7 @@ class Storage
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function single() : stdClass
+    public function single()
     {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);

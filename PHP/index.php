@@ -22,11 +22,15 @@
         list($user_id, $username, $name) = explode("|", $user_info);
     
         header("Location: ".URLROOT."/todo");
+    } else {
+        // Handling CSRF
+        session_start();
+        $_SESSION['token'] = md5(uniqid(mt_rand(), true));
     }
 
     if (!empty($_SERVER['REQUEST_URI']) && strlen($_SERVER['REQUEST_URI']) > 1) {
         $url = getUrl();
-
+        print_r($url); die;
         if (is_dir($url[0])) {
             
             if (@file_exists("/$url[0]/$url[1]")) {
@@ -148,6 +152,7 @@
 
                     <div class="modal-body">
                     <div class="form-outline mb-4">
+                        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? ''?>" class="form-control" />
                         <input type="hidden" name="code" value="login" class="form-control" />
                         <input type="text" id="loginName" name="username" class="form-control" />
                         <label class="form-label" for="loginName">Email or username</label>
@@ -185,6 +190,7 @@
                     <div class="modal-body">
                          <!-- Name input -->
                         <div class="form-outline mb-4">
+                            <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? ''?>" class="form-control" />
                             <input type="hidden" name="code" value="register" class="form-control" />
                             <input type="text" id="registerName" name="name" class="form-control" />
                             <label class="form-label" for="registerName">Name</label>

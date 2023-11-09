@@ -6,6 +6,8 @@
         
         // Membagi string menjadi informasi terpisah
         list($user_id, $username, $name) = explode("|", $user_info);
+    } else {
+        header("Location: ".URLROOT);
     }
 
 ?>
@@ -42,7 +44,10 @@
                         <a class="text-muted" href="#">
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"></circle><path d="M21 21l-5.2-5.2"></path></svg>
                         </a>
-                        <a class="btn btn-sm btn-outline-secondary" href="<?= URLROOT ?>/todo/logout">Logout</a>
+                        <form action="<?= URLROOT ?>/todo/user" method="POST">
+                            <input type="hidden" name="code" value="logout" class="form-control" />
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">Logout</button>
+                        </form>
                     </div>
                 </div>
             </header>
