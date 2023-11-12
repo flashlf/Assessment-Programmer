@@ -43,7 +43,7 @@ username : aduls
 password : e10adc3949ba59abbe56e057f20f883e
 
 ### Vhost XAMPP
-
+``apache/conf/extra/httpd-vhosts.conf`` tambahkan pada baris terakhir
 ```xml
 <VirtualHost *:80>
     ServerAdmin webmaster@example.com
@@ -84,3 +84,5 @@ integrasi backend dengan frontend belum semuanya XD,
 namun point point pada todo list tugas studi kasus sudah terpenuhi untuk item pengerjaan PHP.
 - file sqldump untuk db terletak pada ``asset/sqldump for db``
 - untuk evidence postman belum sempat semuanya tercapture bisa dilihat pada ``asset/Evidence Postman``, namun sudah disediakan collection postman beserta dengan sample responsenya
+- Untuk sertifikat dummy ssl agar bisa berjalan protokol https pada lokal xampp,  bisa di extract terlebih dahulu file ``mia.co.d.zip`` ke folder ``apache\crt`` kemudian bisa di install terlebih dahulu sertifikat ssl dummynya ke bagian Trusted Root Certificate Authorities ``pastikan di remove kembali setelah melakukan penilaian``
+- 
