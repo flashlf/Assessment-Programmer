@@ -30,11 +30,13 @@
 
     if (!empty($_SERVER['REQUEST_URI']) && strlen($_SERVER['REQUEST_URI']) > 1) {
         $url = getUrl();
-        print_r($url); die;
+
         if (is_dir($url[0])) {
             
             if (@file_exists("/$url[0]/$url[1]")) {
                 echo "File Exists";
+
+                print_r($url); die;
             } else {
                 header("Location: ".URLROOT."/404");
             }

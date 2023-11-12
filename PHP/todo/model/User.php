@@ -3,7 +3,7 @@ namespace Model;
 
 use stdClass;
 
-class User
+class User extends Entity implements Mapper
 {
     public $id;
     public $email;
@@ -12,14 +12,6 @@ class User
     public $level;
     public $pass;
 
-    public function __construct($param = null)
-    {
-        $this->id = $param->user_id ?? null;
-        $this->email = $param->email ?? null;
-        $this->code = $param->code ?? null;
-        $this->name = $param->name ?? null;
-        $this->level = $param->level ?? null;
-    }
 
     public function push(stdClass $param) : void
     {
@@ -32,13 +24,18 @@ class User
 
     public function pull() : array
     {
-        return (get_object_vars($this));
+        $property = get_object_vars($this);
+
+        foreach ($property as $key => $value) {
+
+            $temp[$value] = $this->{$value};
+        }
+        return $temp;
     }
 
     public function save()
     {
-        $conn = new Storage();
-
+        $conn = $this->storage;
         if (!empty($this->id)) {
             $sql = <<<SQL
                 UPDATE users SET
@@ -71,7 +68,7 @@ class User
 
     public function login(array $data)
     {
-        $conn = new Storage();
+        $conn = $this->storage;
         $sql = "SELECT * FROM users WHERE (email = :username OR code = :username) LIMIT 1";
         $conn->query($sql);
         $conn->bind(":username", filter_var($data['username'], FILTER_SANITIZE_SPECIAL_CHARS));
@@ -88,8 +85,13 @@ class User
         return $this;
     }
 
-    public function register(Type $var = null)
+    public function register(array $data)
     {
-        # code...
+        $this->name = filter_var($data['name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $this->code = filter_var($data['username'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $this->email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
+        $this->pass = filter_var($data['password'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $this->save();
     }
 }

@@ -33,7 +33,7 @@ Membuat program untuk todolist dengan fitur CRUD, detail item pada point todo li
 - [ ] RESTAPI CRUD Published
     - [x] Using HTTP Auth (Without Session)
     - [x] I/O Json Formatted
-    - [ ] Error Handling
+    - [x] Error Handling
     - [x] Validate Variable
 
 

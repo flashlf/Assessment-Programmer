@@ -19,7 +19,7 @@ class Storage
 
     public function __construct() {
         // Set DSN (Data Source Name)
-        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
+        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname. ';charset=utf8';
         $options = array(
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -79,7 +79,7 @@ class Storage
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
     
-    public function rowCount()
+    public function rowCount() : int
     {
         return $this->stmt->rowCount();
     }
