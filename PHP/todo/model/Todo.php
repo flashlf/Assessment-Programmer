@@ -119,36 +119,27 @@ final class Todo extends Entity implements Mapper
     public function update()
     {
         $conn = $this->storage;
-        // Mendefinisikan array kolom yang dapat di-update
         $allowedColumns = ['user_id', 'title', 'description', 'background'];
 
-        // Inisialisasi string query UPDATE
         $sql = "UPDATE todos SET ";
 
-        // Mendefinisikan array untuk bind value
         $bindValues = [];
 
-        // Iterasi untuk setiap kolom
         foreach ($allowedColumns as $column) {
-            // Cek apakah properti tersebut di-set (tidak null)
-            if ($this->{$column} !== null) {
-                // Menambahkan kolom ke dalam query
-                $sql .= "$column = :$column, ";
 
-                // Menambahkan bind value ke dalam array
+            if ($this->{$column} !== null) {
+
+                $sql .= "$column = :$column, ";
                 $bindValues[":$column"] = $this->{$column};
             }
         }
 
-        // Menghapus koma ekstra dan menambahkan kondisi WHERE
         $sql = rtrim($sql, ', ') . " WHERE todo_id = :todo_id and user_id = :user_id2";
 
-        // Menambahkan bind value untuk todo_id
         $bindValues[':todo_id'] = $this->todo_id;
         $bindValues[':user_id2'] = $this->user_id;
 
-        // Eksekusi query UPDATE
-        $conn->query($sql, $bindValues);
+        $conn->query($sql);
 
         foreach ($bindValues as $key => $value) {
             $conn->bind($key, $value);
