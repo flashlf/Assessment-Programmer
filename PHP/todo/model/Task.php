@@ -108,4 +108,39 @@ final class Task extends Entity implements Mapper
         return false;
     }
 
+    public function update()
+    {
+        $conn = $this->storage;
+        $allowedColumns = ['todo_id', 'status', 'description'];
+
+        $sql = "UPDATE tasks SET ";
+
+        $bindValues = [];
+
+        foreach ($allowedColumns as $column) {
+            if ($this->{$column} !== null) {
+                
+                $sql .= "$column = :$column, ";
+                $bindValues[":$column"] = $this->{$column};
+            }
+        }
+
+        $sql = rtrim($sql, ', ') . " WHERE task_id = :task_id and todo_id = :todo_id2";
+
+        $bindValues[':task_id'] = $this->task_id;
+        $bindValues[':todo_id2'] = $this->todo_id;
+
+        $conn->query($sql);
+
+        foreach ($bindValues as $key => $value) {
+            $conn->bind($key, $value);
+        }
+
+        $result = $conn->execute();
+        if ($result) {
+            return true;
+        }
+
+        return false;
+    }
 }

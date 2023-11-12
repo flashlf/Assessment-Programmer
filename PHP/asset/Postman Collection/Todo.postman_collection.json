@@ -1455,6 +1455,348 @@
 					"body": "{\n    \"code\": 200,\n    \"info\": \"Data Berhasil Dihapus\",\n    \"data\": null\n}"
 				}
 			]
+		},
+		{
+			"name": "Update Todo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\" : \"0\",\r\n    \"data\" : {\r\n        \"description\" : \"Test Lagi dari api untuk update\",\r\n        \"title\" : \"Adul\",\r\n        \"background\" : \"FFFFFF\",\r\n        \"image_attachment\": \"\",\r\n        \"user_id\" : \"1\",\r\n        \"todo_id\" : \"2\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://adul.todo.app/todo/update-api",
+					"protocol": "https",
+					"host": [
+						"adul",
+						"todo",
+						"app"
+					],
+					"path": [
+						"todo",
+						"update-api"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "400 Required Parameter",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\" : \"0\",\r\n    \"data\" : {\r\n        \"description\" : \"Test\",\r\n        \"title\" : \"Adul\",\r\n        \"background\" : \"FFFFFF\",\r\n        \"image_attachment\": \"\",\r\n        \"user_id\" : \"1\",\r\n        \"todo_id\" : \"2\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://adul.todo.app/todo/update-api",
+							"protocol": "https",
+							"host": [
+								"adul",
+								"todo",
+								"app"
+							],
+							"path": [
+								"todo",
+								"update-api"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 Nov 2023 22:56:38 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "177"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 400,\n    \"info\": \"Mandatory parameter required! background\",\n    \"data\": {\n        \"code\": \"0\",\n        \"data\": {\n            \"description\": \"Test\",\n            \"title\": \"Adul\",\n            \"image_attachment\": \"\",\n            \"user_id\": \"1\",\n            \"todo_id\": \"2\"\n        }\n    }\n}"
+				},
+				{
+					"name": "200 Ok Update Data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\" : \"0\",\r\n    \"data\" : {\r\n        \"description\" : \"Test Lagi dari api untuk update\",\r\n        \"title\" : \"Adul\",\r\n        \"background\" : \"FFFFFF\",\r\n        \"image_attachment\": \"\",\r\n        \"user_id\" : \"1\",\r\n        \"todo_id\" : \"2\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://adul.todo.app/todo/update-api",
+							"protocol": "https",
+							"host": [
+								"adul",
+								"todo",
+								"app"
+							],
+							"path": [
+								"todo",
+								"update-api"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 Nov 2023 22:58:29 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "195"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"info\": \"OK\",\n    \"data\": {\n        \"todo_id\": \"2\",\n        \"user_id\": \"1\",\n        \"title\": \"Adul\",\n        \"description\": \"Test Lagi dari api untuk update\",\n        \"status\": 0,\n        \"image_attachment\": \"\",\n        \"background\": \"FFFFFF\",\n        \"taskList\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\" : \"1\",\r\n    \"data\" : {\r\n        \"description\" : \"Test Lagi dari api untuk update\",\r\n        \"status\" : \"1\",\r\n        \"task_id\" : \"2\",\r\n        \"todo_id\" : \"1\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://adul.todo.app/todo/update-api",
+					"protocol": "https",
+					"host": [
+						"adul",
+						"todo",
+						"app"
+					],
+					"path": [
+						"todo",
+						"update-api"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "400 Parameter Required",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\" : \"1\",\r\n    \"data\" : {\r\n        \"description\" : \"Test Lagi dari api untuk update\",\r\n        \"status\" : \"1\",\r\n        \"task_id\" : \"\",\r\n        \"todo_id\" : \"1\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://adul.todo.app/todo/update-api",
+							"protocol": "https",
+							"host": [
+								"adul",
+								"todo",
+								"app"
+							],
+							"path": [
+								"todo",
+								"update-api"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 Nov 2023 23:06:21 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "71"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 400,\n    \"info\": \"Mandatory parameter required! task_id\",\n    \"data\": null\n}"
+				},
+				{
+					"name": "200 OK update Task",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\" : \"1\",\r\n    \"data\" : {\r\n        \"description\" : \"Test Lagi dari api untuk update\",\r\n        \"status\" : \"1\",\r\n        \"task_id\" : \"2\",\r\n        \"todo_id\" : \"1\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://adul.todo.app/todo/update-api",
+							"protocol": "https",
+							"host": [
+								"adul",
+								"todo",
+								"app"
+							],
+							"path": [
+								"todo",
+								"update-api"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 12 Nov 2023 23:07:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "122"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"info\": \"OK\",\n    \"data\": {\n        \"task_id\": \"2\",\n        \"todo_id\": \"1\",\n        \"status\": \"1\",\n        \"description\": \"Test Lagi dari api untuk update\"\n    }\n}"
+				}
+			]
 		}
 	],
 	"auth": {

@@ -81,4 +81,6 @@ password : e10adc3949ba59abbe56e057f20f883e
 
 ## Notes PHP
 integrasi backend dengan frontend belum semuanya XD,
-namun point point pada todo list tugas studi kasus sudah terpenuhi untuk item pengerjaan PHP
+namun point point pada todo list tugas studi kasus sudah terpenuhi untuk item pengerjaan PHP.
+- file sqldump untuk db terletak pada ``asset/sqldump for db``
+- untuk evidence postman belum sempat semuanya tercapture bisa dilihat pada ``asset/Evidence Postman``, namun sudah disediakan collection postman beserta dengan sample responsenya
