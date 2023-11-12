@@ -20,6 +20,10 @@ class Config {
     // URL ROOT
     define('URLROOT', 'https://'.$_SERVER['SERVER_NAME']);
 
+    // URL UPLOAD Asset
+    define('DIR_ASSET_UPLOAD', 'https://'.$_SERVER['SERVER_NAME'].'/asset/uploads/');
+    define('UPLOAD_DIR', '\asset\uploads\\');
+
     // SITE NAME
     define('SITENAME', 'Todo Apps');
 

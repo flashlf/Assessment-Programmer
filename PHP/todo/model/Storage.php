@@ -1,6 +1,8 @@
 <?php
 namespace Model;
 
+require_once "../config/config.php";
+
 use Todo\Config;
 use PDO;
 use PDOException;
@@ -82,6 +84,11 @@ class Storage
     public function rowCount() : int
     {
         return $this->stmt->rowCount();
+    }
+
+    public function getLastInsertId()
+    {
+        return $this->dbh->lastInsertId();
     }
 
 }

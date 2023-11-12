@@ -3,7 +3,7 @@ namespace Model;
 
 use stdClass;
 
-class User extends Entity implements Mapper
+final class User extends Entity implements Mapper
 {
     public $id;
     public $email;

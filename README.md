@@ -22,15 +22,15 @@ Membuat program untuk todolist dengan fitur CRUD, detail item pada point todo li
 - [x] Object Oriented
     - [x] Namespace
     - [x] Magic method
-    - [ ] Overidding Method
+    - [x] Overidding Method
     - [x] Interface & Abstract
-    - [ ] Collection
+    - [x] Collection
 - [x] Security
     - [x] Handling CSRF
-    - [ ] Handling XSS
+    - [x] Handling XSS
     - [x] Handling SQL Injection
 - [ ] Feature attachment (Validate Size & Extension File)
-- [ ] RESTAPI CRUD Published
+- [x] RESTAPI CRUD Published
     - [x] Using HTTP Auth (Without Session)
     - [x] I/O Json Formatted
     - [x] Error Handling
@@ -38,7 +38,7 @@ Membuat program untuk todolist dengan fitur CRUD, detail item pada point todo li
 
 
 ### Auth Api
-pastikan route untuk file .htpasswd sudah sesuai pada file ``todo\.htaccess`
+pastikan route untuk file ``.htpasswd`` sudah sesuai pada file ``todo\.htaccess``
 username : aduls
 password : e10adc3949ba59abbe56e057f20f883e
 

@@ -13,6 +13,12 @@ abstract class Entity
         $this->storage = new Storage();
     }
 
+    public function load()
+    {
+        # ambil parameter yg dibutuhkan
+        # load data sesuai parameter
+    }
+
     public function save()
     {
         # ambil semua parameter yg akan disimpan
@@ -48,12 +54,7 @@ abstract class Entity
     }
     public function pull()
     {
-        $property = get_object_vars($this);
-
-        foreach ($property as $key => $value) {
-
-            $temp[$value] = $this->{$value};
-        }
-        return $temp;
+        unset($this->storage);
+        return get_object_vars($this);
     }
 }

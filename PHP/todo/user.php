@@ -2,8 +2,6 @@
 
 use Model\User;
 
-require_once "../config/config.php";
-
 spl_autoload_register(function($className){
     require_once  $className . '.php';
 });
@@ -13,7 +11,9 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (isset($_POST['code'])) {
+
         $user = new User();
+        
         switch ($_POST['code']) {
             case "login" :
                 $token = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_SPECIAL_CHARS);

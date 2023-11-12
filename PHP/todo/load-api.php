@@ -76,7 +76,42 @@ try {
             }
             break;
         default :
-            $restapi->data = null;
+            
+            $validate->requiredInput($requiredKey, $restapi->data['data']);
+            if ($validate->passed === false) {
+                $restapi->code = 400;
+                $restapi->info = $validate->message;
+            } else {
+                $data = new \stdClass();
+                $data->user_id = $restapi->data['data']['user_id'];
+                $data->description = $restapi->data['data']['description'];
+                $data->title = $restapi->data['data']['title'];
+                $data->todo_id = $restapi->data['data']['todo_id'];
+                // if (isset($restapi->data['data']['image_attachment'])
+                //  && !empty($restapi->data['data']['image_attachment'])) {
+                //     $validate->getDataBase64($restapi->data['data']['image_attachment']);
+
+                //     if ($validate->passed === false) {
+                //         $restapi->data = null;
+                //         throw new \OutOfBoundsException("Format extensi tidak diterima atau file corrupt");
+                //     } else {
+                //         $data->image_attachment = $validate->saveBase64ToFile();
+                //     }
+                // }
+                $todo = new Model\Todo($data);
+                $todo->getTasks();
+                print_r(json_encode($todo->pull())); exit;
+                // if ($todo->save()) {
+                //     $restapi->code = 200;
+                //     $restapi->info = "Success insert new task";
+                //     $restapi->data = $todo->storage->getLastInsertId();
+                // } else {
+                //     $restapi->code = 400;
+                //     $restapi->info = "Failed insert new task";
+                //     $restapi->data = null;
+                // }
+            }
+
             $restapi->code = 400;
             $restapi->info = "Code value out of range";
             break;
