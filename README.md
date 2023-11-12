@@ -29,7 +29,7 @@ Membuat program untuk todolist dengan fitur CRUD, detail item pada point todo li
     - [x] Handling CSRF
     - [x] Handling XSS
     - [x] Handling SQL Injection
-- [ ] Feature attachment (Validate Size & Extension File)
+- [x] Feature attachment (Validate Size & Extension File)
 - [x] RESTAPI CRUD Published
     - [x] Using HTTP Auth (Without Session)
     - [x] I/O Json Formatted
@@ -51,6 +51,11 @@ password : e10adc3949ba59abbe56e057f20f883e
     ServerName adul.todo.app
     ErrorLog "logs/adultodo-errorr.log"
     CustomLog "logs/adultodo-access.log" common
+    <Directory "C:\xampp-7\htdocs\Assessment-Programmer\PHP\asset\uploads">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
 </VirtualHost>
 <VirtualHost *:443>
      DocumentRoot "C:\xampp-7\htdocs\Assessment-Programmer\PHP"
@@ -60,10 +65,10 @@ password : e10adc3949ba59abbe56e057f20f883e
      SSLCertificateFile "crt/adul.todo.app/server.crt"
      SSLCertificateKeyFile "crt/adul.todo.app/server.key"
  	<Directory "C:\xampp-7\htdocs\Assessment-Programmer\PHP">
-         Options All
- 	AllowOverride All
- 	Require all granted
-     </Directory>
+        Options All
+        AllowOverride All
+        Require all granted
+    </Directory>
 </VirtualHost>
 
 ```

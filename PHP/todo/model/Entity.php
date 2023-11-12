@@ -13,7 +13,7 @@ abstract class Entity
         $this->storage = new Storage();
     }
 
-    public function load()
+    public function load($id)
     {
         # ambil parameter yg dibutuhkan
         # load data sesuai parameter
@@ -41,17 +41,21 @@ abstract class Entity
         $mapping = get_object_vars($param);
 
         foreach ($property as $key => $value) {
-
             foreach ($mapping as $keyMap => $valueMap) {
-
-                if (isset($this->{$keyMap})) {
-                    $this->{$value} = $valueMap;
+                if ($key === $keyMap) {
+                    if ($value instanceof Storage) {
+                        // Tambahkan logika khusus untuk Storage jika diperlukan
+                        // $this->{$key}->someMethod($valueMap);
+                    } else {
+                        $this->{$key} = $valueMap;
+                    }
                 }
-
             }
         }
 
+        unset($this->storage);
     }
+
     public function pull()
     {
         unset($this->storage);

@@ -6,8 +6,11 @@ use stdClass;
 
 final class Task extends Entity implements Mapper
 {
-    public $todo_id;
+    const LOADBY_ID = 1;
+    const LOADBY_TODO = 2;
+
     public $task_id;
+    public $todo_id;
     public $status;
     public $description;
 
@@ -52,4 +55,30 @@ final class Task extends Entity implements Mapper
         return $conn->execute();
     }
 
+    public function load($id, $type = self::LOADBY_ID)
+    {
+        $conn = $this->storage;
+
+        switch ($type) {
+            case self::LOADBY_TODO :
+                $column = 'todo_id';
+            break;
+            case self::LOADBY_ID :
+            default :
+                $column = 'task_id';
+            break;
+        }
+
+        $sql = "SELECT * FROM tasks WHERE $column = :id";
+        $conn->query($sql);
+        $conn->bind(":id", filter_var($id, FILTER_SANITIZE_NUMBER_INT));
+        $result = $conn->single();
+
+        if ($result) {
+            $this->push($result);
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -4,20 +4,19 @@ namespace Model;
 
 use stdClass;
 
-class Tasklist extends Entity implements Mapper
+class Todolist extends Entity implements Mapper
 {
     private array $list;
 
-
-    public function __construct(Task ...$task)
+    public function __construct(Todo ...$todo)
     {
-        $this->list = $task;
+        $this->list = $todo;
         parent::__construct();
     }
     
-    public function add(Task $task) : void
+    public function add(Todo $todo) : void
     {
-        $this->list[] = $task;
+        $this->list[] = $todo;
     }
 
     public function all(bool $convertToArray = false) : array
@@ -30,22 +29,23 @@ class Tasklist extends Entity implements Mapper
         return $this->list;
     }
 
-    public function loadTaskList($id)
+    public function loadTodoList($id)
     {
         $conn = $this->storage;
-        $sql = "SELECT * FROM tasks WHERE todo_id = :id";
+        $sql = "SELECT * FROM todos WHERE user_id = :id";
         $conn->query($sql);
         $conn->bind(":id", filter_var($id, FILTER_SANITIZE_NUMBER_INT));
         $result = $conn->resultSet();
-
+        
         if (empty($result)) {
             return false;
         }
-        
+
         foreach ($result as $value) {
-            $localTask = new Task($value);
-            unset($localTask->storage);
-            $this->add($localTask);
+            $localTodo = new Todo($value);
+            $localTodo->getTasks();
+            unset($localTodo->storage);
+            $this->add($localTodo);
         }
 
         return true;
