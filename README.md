@@ -1,7 +1,7 @@
 # Assessment-Programmer
 Repository Tugas untuk training Assesment Programmer Neuron 2023
 
-## HTML CSS
+# HTML CSS
 ### Todo list HTML & CSS
 - [x] List Film = ``list.html``, Pemilihan Tempat Duduk = ``seating.html``, Menu Pembayaran = ``pembayaran.html``
 - [x] 2 Menu view/GUI menggunakan HTML+CSS Bootstrap ``index.html`` ``seating.html``
@@ -11,10 +11,10 @@ Repository Tugas untuk training Assesment Programmer Neuron 2023
 ### Notes
 Library jquery / js sebenernya gadigunakan sih, cuma yaudah lah ya
 
-## SQL
+# SQL
 Belum dicatet udah kelewat
 
-## PHP
+# PHP
 Membuat program untuk todolist dengan fitur CRUD, detail item pada point todo list
 ### Todo List PHP
 - [x] Login Page (index utama modal login dan signup)
@@ -78,3 +78,7 @@ password : e10adc3949ba59abbe56e057f20f883e
 ```c++
 127.0.0.1 adul.todo.app
 ```
+
+## Notes PHP
+integrasi backend dengan frontend belum semuanya XD,
+namun point point pada todo list tugas studi kasus sudah terpenuhi untuk item pengerjaan PHP

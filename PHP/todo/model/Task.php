@@ -81,4 +81,31 @@ final class Task extends Entity implements Mapper
 
         return false;
     }
+
+    public function delete($id, $type = self::LOADBY_ID)
+    {
+        $conn = $this->storage;
+
+        switch ($type) {
+            case self::LOADBY_TODO :
+                $column = 'todo_id';
+            break;
+            case self::LOADBY_ID :
+            default :
+                $column = 'task_id';
+            break;
+        }
+
+        $sql = "SELECT * FROM tasks WHERE $column = :id";
+        $conn->query($sql);
+        $conn->bind(":id", filter_var($id, FILTER_SANITIZE_NUMBER_INT));
+        $result = $conn->execute();
+
+        if ($result) {
+            return true;
+        }
+
+        return false;
+    }
+
 }

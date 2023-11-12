@@ -27,7 +27,7 @@ abstract class Entity
         # eksekusi data ke db
     }
 
-    public function delete()
+    public function delete($id)
     {
         # ambil semua parameter yg akan disimpan
         # check ke db apakah data tersebut ada
@@ -44,8 +44,7 @@ abstract class Entity
             foreach ($mapping as $keyMap => $valueMap) {
                 if ($key === $keyMap) {
                     if ($value instanceof Storage) {
-                        // Tambahkan logika khusus untuk Storage jika diperlukan
-                        // $this->{$key}->someMethod($valueMap);
+                        // Do Nothing aja deh
                     } else {
                         $this->{$key} = $valueMap;
                     }

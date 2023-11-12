@@ -27,9 +27,8 @@ abstract class Api
             exit;
 
         } else {
-
-            $this->data = json_decode(file_get_contents('php://input'), true);
-
+            $request = $_GET['param'] ?? file_get_contents('php://input');
+            $this->data = json_decode($request, true);
             if (is_null($this->data)) {
                 $this->code = 400;
                 $this->info = "Json format not valid";

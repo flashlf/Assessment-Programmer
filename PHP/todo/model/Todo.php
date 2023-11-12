@@ -91,6 +91,31 @@ final class Todo extends Entity implements Mapper
         return false;
     }
 
+    public function delete($id, $type = self::LOADBY_ID)
+    {
+        $conn = $this->storage;
+
+        switch ($type) {
+            case self::LOADBY_USER :
+                $column = 'user_id';
+            break;
+            case self::LOADBY_ID :
+            default :
+                $column = 'todo_id';
+            break;
+        }
+
+        $sql = "DELETE FROM todos WHERE $column = :id";
+        $conn->query($sql);
+        $conn->bind(":id", filter_var($id, FILTER_SANITIZE_NUMBER_INT));
+        $result = $conn->execute();
+
+        if ($result) {
+            return true;
+        }
+        return false;
+    }
+
     public function getTasks()
     {
         if (empty($this->todo_id)) {
