@@ -23,15 +23,53 @@ Membuat program untuk todolist dengan fitur CRUD, detail item pada point todo li
     - [x] Namespace
     - [x] Magic method
     - [ ] Overidding Method
-    - [ ] Interface & Abstract
+    - [x] Interface & Abstract
     - [ ] Collection
-- [ ] Security
+- [x] Security
     - [x] Handling CSRF
     - [ ] Handling XSS
     - [x] Handling SQL Injection
 - [ ] Feature attachment (Validate Size & Extension File)
 - [ ] RESTAPI CRUD Published
-    - [ ] Using HTTP Auth (Without Session)
-    - [ ] I/O Json Formatted
+    - [x] Using HTTP Auth (Without Session)
+    - [x] I/O Json Formatted
     - [ ] Error Handling
-    - [ ] Validate Variable
+    - [x] Validate Variable
+
+
+### Auth Api
+pastikan route untuk file .htpasswd sudah sesuai pada file ``todo\.htaccess`
+username : aduls
+password : e10adc3949ba59abbe56e057f20f883e
+
+### Vhost XAMPP
+
+```xml
+<VirtualHost *:80>
+    ServerAdmin webmaster@example.com
+    DocumentRoot "C:\xampp-7\htdocs\Assessment-Programmer\PHP"
+    ServerName adul.todo.app
+    ErrorLog "logs/adultodo-errorr.log"
+    CustomLog "logs/adultodo-access.log" common
+</VirtualHost>
+<VirtualHost *:443>
+     DocumentRoot "C:\xampp-7\htdocs\Assessment-Programmer\PHP"
+     ServerName adul.todo.app
+     ServerAlias *.adul.todo.app
+     SSLEngine on
+     SSLCertificateFile "crt/adul.todo.app/server.crt"
+     SSLCertificateKeyFile "crt/adul.todo.app/server.key"
+ 	<Directory "C:\xampp-7\htdocs\Assessment-Programmer\PHP">
+         Options All
+ 	AllowOverride All
+ 	Require all granted
+     </Directory>
+</VirtualHost>
+
+```
+
+### host windows
+
+```c++
+127.0.0.1 adul.todo.app
+```
