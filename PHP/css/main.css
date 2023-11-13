@@ -103,6 +103,7 @@ a:active.blog-header-logo{
     min-height: 300px;
     overflow-x: auto;
     white-space: nowrap;
+    padding-bottom: 50px;
 }
 
 .todos {
@@ -117,6 +118,7 @@ a:active.blog-header-logo{
     display: inline-block;
     margin-right: 2rem;
     white-space: wrap;
+    vertical-align: top;
 }
 
 .card-film {

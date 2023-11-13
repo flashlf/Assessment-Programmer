@@ -98,10 +98,68 @@
                     
                         <div class="todos border rounded mr-4 post">
                           <div class="p-4">
-                            <strong class="d-inline-block mb-2 text-success">World</strong>
+                            <strong class="d-inline-block mb-2 text-success">World</strong>&nbsp;&nbsp;
+                            <button style="float: right;" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteTodo" onclick="deleteTodo()">
+                                Delete Todo
+                            </button>
+                            <button style="float: right;" type="button" class="btn btn-sm btn-success mx-2" data-toggle="modal" data-target="#addTask">
+                                + Task
+                            </button>
                             <h3 class="mb-0">Featured post</h3>
                             <div class="mb-1 text-muted">Nov 12</div>
                             <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+
+                            <div class="todo-task">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                    </label>
+                                </div>
+                            </div>
+
                             <a href="#">Continue reading</a>
                           </div>
                         </div>
@@ -275,23 +333,84 @@
             $.ajax(settings).done(function (response) {
                 if (response.code == '200') {
                     $.each(response.data, (index, item) => {
-                        let todo = `
+                        
+                        let todoTemplate = `
                             <div class="todos border rounded mr-4 post">
                             <div class="p-4">
                                 <strong class="d-inline-block mb-2 text-success">Todo</strong>
+                                &nbsp;&nbsp;
+                                <button style="float: right;" type="button" class="btn btn-sm btn-danger"
+                                 onclick="deleteTodo(${item.todo_id}, 0)">
+                                    Delete Todo
+                                </button>
+                                <button style="float: right;" type="button" class="btn btn-sm btn-success mx-2"
+                                 data-toggle="modal" data-target="#addTask">
+                                    + Task
+                                </button>
                                 <h3 class="mb-0">${item.title}</h3>
                                 <div class="mb-1 text-muted">Nov 12</div>
                                 <p class="card-text mb-auto">${item.description}</p>
+                                
+                                <div class="todo-task" id="taskList">
+                                </div>
+
                                 <a href="#">Continue reading</a>
                             </div>
                             </div>
                         `;
 
-                        $("#todoList").append(todo);
+                        $("#todoList").append(todoTemplate);
+                        
+                        $.each(item.taskList, (taskIdx, task) => {
+                            let taskTemplate = `
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" ${task.status == 1 ? 'checked' : ''}
+                                 value="" id="task_${task.task_id}-todo_${task.todo_id}">
+                                <label class="form-check-label" for="task_${task.task_id}-todo_${task.todo_id}">
+                                    ${task.description}
+                                </label>
+                            </div>
+                            `;
+
+                            $("#taskList").append(taskTemplate);
+                        });
+                        
                     });
                 }
             });
         }
+
+        function deleteTodo(id, mode) {
+            let key = `${mode == 0 ? 'todo_id' : 'user_id'}`
+            vAjaxData = {
+                code : 0,
+                data : {
+                }
+            };
+            vAjaxData['data'][key] = id;
+
+            $.ajax({
+                url : "<?= URLROOT ?>/todo/delete-api",
+                type: "POST",
+                dataType : "json",
+                contentType: 'application/json',
+                data: JSON.stringify(vAjaxData),
+                beforeSend: function (xhr) {
+                    console.log(vAjaxData);
+                    xhr.setRequestHeader ("Authorization", "Basic " + btoa('aduls' + ":" + 'e10adc3949ba59abbe56e057f20f883e'));
+                },
+                success: function(result) {
+                    alert(result.info);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    alert("Terjadi Kesalahan");
+                },
+                complete: function(xhr, status) {
+                }
+            });
+        }
+
         $(document).ready(function() {
 
             loadTodo();
