@@ -11,6 +11,7 @@ class Utility
     public bool $passed;
     public string $message;
 
+    public $maxFileSize = 2 * 1024 * 1024;
     public $base64Header;
     public $base64Content;
     public string $fileSize;
@@ -58,7 +59,7 @@ class Utility
             // Mendapatkan ekstensi file dari tipe file
             // $this->fileExtension = pathinfo($type, PATHINFO_EXTENSION) ?? $type;
             $this->fileExtension = $type;
-            if (in_array(strtolower($this->fileExtension), $this->allowedMimeType)) {
+            if (in_array(strtolower($this->fileExtension), $this->allowedMimeType) && $this->maxFileSize < $this->fileSize) {
                 $this->passed = true;
             } else {
                 $this->passed = false;
