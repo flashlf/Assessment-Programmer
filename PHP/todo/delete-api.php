@@ -71,7 +71,7 @@ try {
 
                 $task = new Model\Task($data);
                 if ($task->delete($data->task_id)) {
-                    $restapi->info = "OK";
+                    $restapi->info = "Data Berhasil terhapus";
                     $restapi->code = 200;
                     $restapi->data = $task->pull();
                 } else {
@@ -87,7 +87,7 @@ try {
 
                 $task = new Model\Task($data);
                 if ($task->delete($data->todo_id, Model\Task::LOADBY_TODO)) {
-                    $restapi->info = "OK";
+                    $restapi->info = "Data Berhasil terhapus";
                     $restapi->code = 200;
                     $restapi->data = $task->pull();
                 } else {

@@ -96,7 +96,7 @@ final class Task extends Entity implements Mapper
             break;
         }
 
-        $sql = "SELECT * FROM tasks WHERE $column = :id";
+        $sql = "DELETE FROM tasks WHERE $column = :id";
         $conn->query($sql);
         $conn->bind(":id", filter_var($id, FILTER_SANITIZE_NUMBER_INT));
         $result = $conn->execute();
