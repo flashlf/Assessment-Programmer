@@ -342,7 +342,7 @@
                                 &nbsp;&nbsp;
                                 <button style="float: right;" type="button" class="btn btn-sm btn-danger"
                                  onclick="deleteTodo(${item.todo_id}, 0)">
-                                    Delete Todo
+                                    <i class="fa fa-trash-alt"></i>
                                 </button>
                                 <button style="float: right;" type="button" class="btn btn-sm btn-success mx-2"
                                  data-toggle="modal" data-target="#addTask">
@@ -366,7 +366,8 @@
                             let taskTemplate = `
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" ${task.status == 1 ? 'checked' : ''}
-                                 value="" id="task_${task.task_id}-todo_${task.todo_id}">
+                                 value="" id="task_${task.task_id}-todo_${task.todo_id}" data-taskid="${task.task_id}"
+                                 data-todoid="${task.todo_id}" data-description="${task.description}">
                                 <label class="form-check-label" for="task_${task.task_id}-todo_${task.todo_id}">
                                     ${task.description}
                                     </label>
@@ -387,6 +388,79 @@
                         });
                         
                     });
+
+                    $("#taskList").on("change", "input[type=checkbox]", function() {
+
+                        let vStatus = $(this).is(":checked");
+                        console.log(typeof vStatus);
+                        vAjaxData = {
+                            code : 1,
+                            data : {
+                                task_id : $(this).data("taskid"),
+                                todo_id : $(this).data("todoid"),
+                                status : vStatus,
+                                description : $(this).data("description")
+                            }
+                        };
+
+                        $.ajax({
+                            url : "<?= URLROOT ?>/todo/update-api",
+                            type: "POST",
+                            dataType : "json",
+                            contentType: 'application/json',
+                            data: JSON.stringify(vAjaxData),
+                            beforeSend: function (xhr) {
+                                console.log(vAjaxData);
+                                xhr.setRequestHeader ("Authorization", "Basic " + btoa('aduls' + ":" + 'e10adc3949ba59abbe56e057f20f883e'));
+                            },
+                            success: function(result) {
+                                alert(result.info);
+                                location.reload();
+                            },
+                            error: function(xhr) {
+                                alert("Terjadi Kesalahan");
+                            },
+                            complete: function(xhr, status) {
+                            }
+                        });
+
+                    });
+                }
+            });
+
+        }
+
+        function editTask(vTask, vTodo) {
+            var vDesc = prompt("Deskripsi task baru :");
+
+            vAjaxData = {
+                code : 1,
+                data : {
+                    task_id : vTask,
+                    todo_id : vTodo,
+                    status : "0",
+                    description : vDesc
+                }
+            };
+
+            $.ajax({
+                url : "<?= URLROOT ?>/todo/update-api",
+                type: "POST",
+                dataType : "json",
+                contentType: 'application/json',
+                data: JSON.stringify(vAjaxData),
+                beforeSend: function (xhr) {
+                    console.log(vAjaxData);
+                    xhr.setRequestHeader ("Authorization", "Basic " + btoa('aduls' + ":" + 'e10adc3949ba59abbe56e057f20f883e'));
+                },
+                success: function(result) {
+                    alert(result.info);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    alert("Terjadi Kesalahan");
+                },
+                complete: function(xhr, status) {
                 }
             });
         }
@@ -456,6 +530,7 @@
         $(document).ready(function() {
 
             loadTodo();
+
         });
     </script>
 </html>

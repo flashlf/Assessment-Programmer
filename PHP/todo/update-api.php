@@ -45,7 +45,7 @@ try {
 
             break;
         case '1' : // Task
-            $requiredKey = ['todo_id', 'task_id', 'status', 'description'];
+            $requiredKey = ['todo_id', 'task_id', 'description'];
             $validate->requiredInput($requiredKey, $restapi->data['data']);
             if ($validate->passed === false) {
                 $restapi->code = 400;
@@ -56,7 +56,7 @@ try {
                 $data = new \stdClass();
                 $data->task_id = $restapi->data['data']['task_id'];
                 $data->todo_id = $restapi->data['data']['todo_id'];
-                $data->status = $restapi->data['data']['status'];
+                $data->status = $restapi->data['data']['status'] ?? 0;
                 $data->description = $restapi->data['data']['description'];
 
                 $task = new Model\Task($data);
