@@ -70,7 +70,7 @@ try {
                 $data->task_id = $restapi->data['data']['task_id'];
 
                 $task = new Model\Task($data);
-                if ($task->load($data->task_id)) {
+                if ($task->delete($data->task_id)) {
                     $restapi->info = "OK";
                     $restapi->code = 200;
                     $restapi->data = $task->pull();
@@ -86,7 +86,7 @@ try {
                 $data->todo_id = $restapi->data['data']['todo_id'];
 
                 $task = new Model\Task($data);
-                if ($task->load($data->todo_id, Model\Task::LOADBY_TODO)) {
+                if ($task->delete($data->todo_id, Model\Task::LOADBY_TODO)) {
                     $restapi->info = "OK";
                     $restapi->code = 200;
                     $restapi->data = $task->pull();

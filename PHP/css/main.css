@@ -121,6 +121,14 @@ a:active.blog-header-logo{
     vertical-align: top;
 }
 
+.edit-task:hover {
+    color: black !important;
+}
+
+.delete-task:hover {
+    color: red !important;
+}
+
 .card-film {
     position: relative;
     border-radius: 15px;

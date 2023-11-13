@@ -26,6 +26,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Serif+Text">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="<?= URLROOT ?>/css/main.css">
         <!-- Js -->
         <script
@@ -368,7 +369,17 @@
                                  value="" id="task_${task.task_id}-todo_${task.todo_id}">
                                 <label class="form-check-label" for="task_${task.task_id}-todo_${task.todo_id}">
                                     ${task.description}
-                                </label>
+                                    </label>
+
+                                <span class="text-muted delete-task"
+                                    onClick="deleteTask(${task.task_id}, ${task.todo_id})" style="float:right;">
+                                    <small><i class="fa fa-trash-alt"></i></small>
+                                </span>
+
+                                <span class="text-muted edit-task mx-2"
+                                 onClick="editTask(${task.task_id}, ${task.todo_id})" style="float:right;">
+                                    <small><i class="fa fa-pen-alt"></i></small>
+                                </span>
                             </div>
                             `;
 
@@ -388,6 +399,37 @@
                 }
             };
             vAjaxData['data'][key] = id;
+
+            $.ajax({
+                url : "<?= URLROOT ?>/todo/delete-api",
+                type: "POST",
+                dataType : "json",
+                contentType: 'application/json',
+                data: JSON.stringify(vAjaxData),
+                beforeSend: function (xhr) {
+                    console.log(vAjaxData);
+                    xhr.setRequestHeader ("Authorization", "Basic " + btoa('aduls' + ":" + 'e10adc3949ba59abbe56e057f20f883e'));
+                },
+                success: function(result) {
+                    alert(result.info);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    alert("Terjadi Kesalahan");
+                },
+                complete: function(xhr, status) {
+                }
+            });
+        }
+
+        function deleteTask(vTask, vTodo) {
+
+            vAjaxData = {
+                code : 1,
+                data : {
+                    task_id : vTask
+                }
+            };
 
             $.ajax({
                 url : "<?= URLROOT ?>/todo/delete-api",
