@@ -102,7 +102,7 @@ Membuat aplikasi shopping menggunakan JS dan HTML,CSS dengan studi kasus seperti
 - [ ] Buatlah sebuah fungsi untuk menyimpan item pada keranjang
 - [ ] Buatlah sebuah arrow function untuk menghitung total harga setelah diskon 
 - [ ] Buatlah contoh penggunaan sebuah variable global untuk menghitung total dengan ongkos kirim
-- [ ] Buatlah contoh pengunaan functional scope variable untuk menghitung diskon tambahan menggunakan coupon
+- [x] Buatlah contoh pengunaan functional scope variable untuk menghitung diskon tambahan menggunakan coupon
 - [ ] Buatlah event pada tombol untuk melakukan checkout
 - [x] Buatlah sebuah Asynchronous function untuk mendapaktkan data product dari API
 - [x] Buatlah sebuah fungsi untuk mengambil data product detail dari API

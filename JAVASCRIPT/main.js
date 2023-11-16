@@ -118,7 +118,7 @@ class Product {
     createdAt;
     detail;
     discount;
-    discount_coupon;
+    discount_coupon = 0;
 
     constructor(id, name, price, createdAt) {
         this.id = id, this.name = name; this.price = price;
@@ -126,6 +126,8 @@ class Product {
 
         if (id % 7 == 0) {
             this.discount = 77;
+        } else {
+            this.discount = 0;
         }
     }
 
@@ -133,5 +135,12 @@ class Product {
         this.detail = dataDetail;
     }
 
-    
+    setCoupon(value) {
+        this.discount_coupon = value;
+    }
+
+    getPriceAfterDiscount() {
+        let totalDiscount = (this.discount + this.discount_coupon);
+        return (price - totalDiscount);
+    }
 }
