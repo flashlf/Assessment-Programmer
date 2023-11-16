@@ -86,3 +86,25 @@ namun point point pada todo list tugas studi kasus sudah terpenuhi untuk item pe
 - untuk evidence postman belum sempat semuanya tercapture bisa dilihat pada ``asset/Evidence Postman``, namun sudah disediakan collection postman beserta dengan sample responsenya
 - Untuk sertifikat dummy ssl agar bisa berjalan protokol https pada lokal xampp,  bisa di extract terlebih dahulu file ``mia.co.d.zip`` ke folder ``apache\crt`` kemudian bisa di install terlebih dahulu sertifikat ssl dummynya ke bagian Trusted Root Certificate Authorities ``pastikan di remove kembali setelah melakukan penilaian``
 - 
+
+
+# JS
+Membuat aplikasi shopping menggunakan JS dan HTML,CSS dengan studi kasus seperti berikut  
+- User dapat meilaht produk
+- Menambahkan produk ke keranjang
+- Menghitung diskon took ?
+- Menghitung diskon menggunakan kupon
+- Proses checkout
+
+### Todo list JS
+- [ ] Buatlah variable untuk menyimpan data username dan jumlah item yang ada pada keranjang
+- [ ] Buatlah sebuah perhitungan untuk menghitung total harga dari setiap item yang ditambahkan ke keranjang
+- [ ] Buatlah sebuah fungsi untuk menyimpan item pada keranjang
+- [ ] Buatlah sebuah arrow function untuk menghitung total harga setelah diskon 
+- [ ] Buatlah contoh penggunaan sebuah variable global untuk menghitung total dengan ongkos kirim
+- [ ] Buatlah contoh pengunaan functional scope variable untuk menghitung diskon tambahan menggunakan coupon
+- [ ] Buatlah event pada tombol untuk melakukan checkout
+- [ ] Buatlah sebuah Asynchronous function untuk mendapaktkan data product dari API
+- [ ] Buatlah sebuah fungsi untuk mengambil data product detail dari API
+- [ ] Buatlah class Product
+- [ ] Buatlah Error Handling pada saat menggunakan API
