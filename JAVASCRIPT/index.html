@@ -40,7 +40,7 @@
                             Login
                         </button>&nbsp;
 
-                        <button type="submit" class="btn btn-sm btn-outline-secondary" id="logoutAccess" style="display: none;">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary" id="logoutAccess" style="display: none;" onclick="logout()">
                             Logout
                         </button>
                     </div>
@@ -65,7 +65,7 @@
 
             <div class="content">
 
-                <h2 class="mt-5">Published Todos</h2>
+                <h2 class="mt-5">Available Products</h2>
                 <div class="row my-4">
                     <div class="col-md-6">
                         <div class="border rounded overflow-hidden flex-md-row mb-4 post">
@@ -165,24 +165,20 @@
     </body>
 
     <script>
-        $(document).ready(function() {
-
+        document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem("username") !== null) {
                 username = localStorage.getItem("username");
                 loginState(true);
             }
 
-            $("#btnLogin").on("click", function() {
-                if(login($(loginName).val()) == true) {                    
-                    $(modalLogin).modal("hide");
+            btnLogin.addEventListener("click", function() {
+                if(login($(loginName).val()) == true) {  
+                    modalLogin.classList.add("d-none");
                     loginState(true);
                 }
             });
 
-            $(logoutAccess).on("click", function() {
-                logout();
-                loginState(false);
-            })
         });
+        
     </script>
 </html>

@@ -19,6 +19,7 @@ function logout() {
     localStorage.removeItem('username');
     username = "";
     alert("Berhasil logout");
+    loginState(false);
 }
 
 function loginState(state = false)
