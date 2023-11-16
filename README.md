@@ -97,7 +97,7 @@ Membuat aplikasi shopping menggunakan JS dan HTML,CSS dengan studi kasus seperti
 - Proses checkout
 
 ### Todo list JS
-- [ ] Buatlah variable untuk menyimpan data username dan jumlah item yang ada pada keranjang
+- [x] Buatlah variable untuk menyimpan data username dan jumlah item yang ada pada keranjang
 - [ ] Buatlah sebuah perhitungan untuk menghitung total harga dari setiap item yang ditambahkan ke keranjang
 - [ ] Buatlah sebuah fungsi untuk menyimpan item pada keranjang
 - [ ] Buatlah sebuah arrow function untuk menghitung total harga setelah diskon 

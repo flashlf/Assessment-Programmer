@@ -24,7 +24,7 @@
         <div class="container">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-betwen align-items-center">
-                    <div class="col-4 pt-1">Logo Here</div>
+                    <div class="col-4 pt-1" id="usernameText"></div>
                     <div class="col-4 pt-1 text-center">
                         <a href="index.html" class="blog-header-logo">Toko Biru Dongker</a>
                     </div>
@@ -32,14 +32,17 @@
                         <a class="text-muted" href="#">
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"></circle><path d="M21 21l-5.2-5.2"></path></svg>
                         </a>
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalSignup">
-                            Sign Up
+                        <button type="button" class="btn btn-sm btn-primary" id="keranjangAccess" data-toggle="modal" style="display:none;">
+                            Keranjang
                         </button>&nbsp;
 
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalLogin">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" id="loginAccess" data-toggle="modal" data-target="#modalLogin">
                             Login
-                        </button>
+                        </button>&nbsp;
 
+                        <button type="submit" class="btn btn-sm btn-outline-secondary" id="logoutAccess" style="display: none;">
+                            Logout
+                        </button>
                     </div>
                 </div>
             </header>
@@ -101,8 +104,7 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST">
-
+                <form>
                     <div class="modal-body">
                     <div class="form-outline mb-4">
                         <input type="text" id="loginName" name="username" class="form-control" />
@@ -117,63 +119,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Login</button>
+                        <button type="button" class="btn btn-success" id="btnLogin">Login</button>
                     </div>
                     
-                </form>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Login End Here -->
-
-        <!-- Modal Login -->
-        <div class="modal fade" id="modalSignup" tabindex="-1" role="dialog" aria-labelledby="modalSignUpTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalSignUpTitle">Sign Up Account</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form>
-
-                    <div class="modal-body">
-                         <!-- Name input -->
-                        <div class="form-outline mb-4">                    
-                            <input type="text" id="registerName" name="name" class="form-control" />
-                            <label class="form-label" for="registerName">Name</label>
-                        </div>
-
-                        <!-- Username input -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="registerUsername" name="username" class="form-control" />
-                            <label class="form-label" for="registerUsername">Username</label>
-                        </div>
-
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="registerEmail" name="email" class="form-control" />
-                            <label class="form-label" for="registerEmail">Email</label>
-                        </div>
-
-                        <!-- Password input -->
-                        <div class="form-outline mb-4">
-                            <input type="password" id="registerPassword" name="password" class="form-control" />
-                            <label class="form-label" for="registerPassword">Password</label>
-                        </div>
-
-                        <!-- Repeat Password input -->
-                        <div class="form-outline mb-4">
-                            <input type="password" id="registerRepeatPassword" name="repeat_password" class="form-control" />
-                            <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Signup</button>
-                    </div>
-
                 </form>
                 </div>
             </div>
@@ -219,6 +167,22 @@
     <script>
         $(document).ready(function() {
 
+            if (localStorage.getItem("username") !== null) {
+                username = localStorage.getItem("username");
+                loginState(true);
+            }
+
+            $("#btnLogin").on("click", function() {
+                if(login($(loginName).val()) == true) {                    
+                    $(modalLogin).modal("hide");
+                    loginState(true);
+                }
+            });
+
+            $(logoutAccess).on("click", function() {
+                logout();
+                loginState(false);
+            })
         });
     </script>
 </html>
