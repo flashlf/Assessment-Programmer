@@ -36,3 +36,17 @@ function loginState(state = false)
         logoutAccess.style.display = "block";
     }
 }
+
+getAllProducts = async () => {
+    try {
+        const response = await fetch("https://6554347063cafc694fe63a4b.mockapi.io/api/v1/products");
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+mappingProduct = (resource) => {
+
+}
