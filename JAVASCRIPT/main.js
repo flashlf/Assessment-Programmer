@@ -1,6 +1,6 @@
 // Define Global Variabel untuk Username dan jumlah item pada keranjang
-let username;
-let totalProduct;
+var username;
+var totalProduct;
 
 function login(vUsername) {
     if (vUsername == "") {
