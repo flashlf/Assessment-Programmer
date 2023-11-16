@@ -14,11 +14,19 @@ function login(vUsername) {
     // set to LocalStorage
     localStorage.setItem("username", username);
 
+    // set to LocalStorage cartUser jika belum ada
+    if (localStorage.getItem(`cart-${username}`) == null) {
+        localStorage.setItem(`cart-${username}`, cartUser);
+    } else {
+        cartUser = JSON.parse(localStorage.getItem(`cart-${username}`));
+    }
+
     return true;
 }
 
 function logout() {
     localStorage.removeItem('username');
+    cartUser = [];
     username = "";
     alert("Berhasil logout");
     loginState(false);
@@ -99,7 +107,7 @@ displayAllProducts = () => {
                 <h3 class="mb-0">${element.name}</h3>
                 <div class="mb-1 text-muted">${element.createdAt}</div>
                 <p class="card-text mb-auto">${element.detail.description}</p><br>
-                <a class="btn btn-sm btn-success" href="#">Add to Cart</a>
+                <a class="btn btn-sm btn-success" onclick="addProductToCart(${index})">Add to Cart</a>
             </div>
         </div>
         `;
@@ -109,6 +117,11 @@ displayAllProducts = () => {
         tempElement.classList.add("col-md-4");
         containerProducts.appendChild(tempElement);
     });
+}
+
+function addProductToCart(id) {
+    cartUser.push(listProduct[id].toJsonObject());
+    alert(`Product ${listProduct[id].name} berhasil ditambahkan ke keranjang`);
 }
 class Product {
     // Properti 
@@ -143,4 +156,22 @@ class Product {
         let totalDiscount = (this.discount + this.discount_coupon);
         return (price - totalDiscount);
     }
+
+    toJsonObject() {
+        return JSON.stringify(this);
+    }
+}
+
+function storeCartLocalStorage() {
+    const temp = [];
+    const combinedObject = cartUser.reduce((acc, jsonString) => {
+        const obj = JSON.parse(jsonString);
+        console.log(obj);
+        temp.push(obj);
+        return { ...acc, ...obj };
+    }, {});
+
+    console.log(temp);
+    const finalJSON = JSON.stringify(temp);
+    localStorage.setItem(`cart-${username}`, finalJSON);
 }

@@ -99,7 +99,7 @@ Membuat aplikasi shopping menggunakan JS dan HTML,CSS dengan studi kasus seperti
 ### Todo list JS
 - [x] Buatlah variable untuk menyimpan data username dan jumlah item yang ada pada keranjang
 - [ ] Buatlah sebuah perhitungan untuk menghitung total harga dari setiap item yang ditambahkan ke keranjang
-- [ ] Buatlah sebuah fungsi untuk menyimpan item pada keranjang
+- [x] Buatlah sebuah fungsi untuk menyimpan item pada keranjang
 - [ ] Buatlah sebuah arrow function untuk menghitung total harga setelah diskon 
 - [ ] Buatlah contoh penggunaan sebuah variable global untuk menghitung total dengan ongkos kirim
 - [x] Buatlah contoh pengunaan functional scope variable untuk menghitung diskon tambahan menggunakan coupon
