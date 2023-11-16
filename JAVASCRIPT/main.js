@@ -31,11 +31,13 @@ function loginState(state = false)
         loginAccess.style.display = "block";
         keranjangAccess.style.display = "none";
         logoutAccess.style.display = "none";
+        containerProducts.innerHTML = "";
     } else {
         usernameText.innerHTML = username;
         loginAccess.style.display = "none";
         keranjangAccess.style.display = "block";
         logoutAccess.style.display = "block";
+        getAllProducts();
     }
 }
 

@@ -147,16 +147,19 @@
             if (localStorage.getItem("username") !== null) {
                 username = localStorage.getItem("username");
                 loginState(true);
+                getAllProducts();
             }
 
             btnLogin.addEventListener("click", function() {
                 if(login($(loginName).val()) == true) {  
-                    modalLogin.classList.add("d-none");
+                    modalLogin.classList.remove("show");
+                    modalLogin.classList.add("fade");
+                    var modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
+                    modalBackdrop.parentNode.removeChild(modalBackdrop);
                     loginState(true);
                 }
             });
 
-            getAllProducts();
         });
         
     </script>
