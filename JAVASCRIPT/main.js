@@ -1,6 +1,9 @@
 // Define Global Variabel untuk Username dan jumlah item pada keranjang
 var username;
-var totalProduct;
+var totalPriceProductsBeforeDiscount;
+var totalDiscount;
+var totalPriceProducts;
+var totalShipmentPrice;
 var listProduct = [];
 var cartUser = [];
 
@@ -18,7 +21,11 @@ function login(vUsername) {
     if (localStorage.getItem(`cart-${username}`) == null) {
         localStorage.setItem(`cart-${username}`, cartUser);
     } else {
-        cartUser = JSON.parse(localStorage.getItem(`cart-${username}`));
+        if (localStorage.getItem(`cart-${username}`) == '') {
+            cartUser = [];
+        } else {
+            cartUser = JSON.parse(localStorage.getItem(`cart-${username}`));
+        }
     }
 
     return true;
@@ -40,12 +47,28 @@ function loginState(state = false)
         keranjangAccess.style.display = "none";
         logoutAccess.style.display = "none";
         containerProducts.innerHTML = "";
+        cartListProducts.innerHTML = "";
+        totalDiscount = 0;
+        totalPriceProducts = 0;
+        totalPriceProductsBeforeDiscount = 0;
+        totalShipmentPrice = 0;
+        cartTotalDiscount.innerHTML = "";
+        cartTotalPrice.innerHTML = "";
+        cartTotalShipment.innerHTML = "";
+        cartFinalPrice.innerHTML = "";
     } else {
         usernameText.innerHTML = username;
         loginAccess.style.display = "none";
         keranjangAccess.style.display = "block";
         logoutAccess.style.display = "block";
         getAllProducts();
+
+        // set to LocalStorage cartUser jika belum ada
+        if (localStorage.getItem(`cart-${username}`) == null) {
+            localStorage.setItem(`cart-${username}`, cartUser);
+        } else {
+            cartUser = JSON.parse(localStorage.getItem(`cart-${username}`));
+        }
     }
 }
 
@@ -120,8 +143,18 @@ displayAllProducts = () => {
 }
 
 function addProductToCart(id) {
-    cartUser.push(listProduct[id].toJsonObject());
+    const coupon = prompt("Masukan voucher coupon apabila ada :");
+    valueCoupon(coupon, id);
+    temp = [];
+    cartUser.forEach((element, index, array) => {
+        temp.push(element);
+    });
+    cartUser = [];
+    temp.push(listProduct[id]);
+    cartUser = temp;
     alert(`Product ${listProduct[id].name} berhasil ditambahkan ke keranjang`);
+
+    storeCartLocalStorage();
 }
 class Product {
     // Properti 
@@ -152,11 +185,6 @@ class Product {
         this.discount_coupon = value;
     }
 
-    getPriceAfterDiscount() {
-        let totalDiscount = (this.discount + this.discount_coupon);
-        return (price - totalDiscount);
-    }
-
     toJsonObject() {
         return JSON.stringify(this);
     }
@@ -164,9 +192,7 @@ class Product {
 
 function storeCartLocalStorage() {
     const temp = [];
-    const combinedObject = cartUser.reduce((acc, jsonString) => {
-        const obj = JSON.parse(jsonString);
-        console.log(obj);
+    const combinedObject = cartUser.reduce((acc, obj) => {
         temp.push(obj);
         return { ...acc, ...obj };
     }, {});
@@ -174,4 +200,130 @@ function storeCartLocalStorage() {
     console.log(temp);
     const finalJSON = JSON.stringify(temp);
     localStorage.setItem(`cart-${username}`, finalJSON);
+}
+
+function listCart() {
+    if (cartUser.length == 0) {
+        alert("Keranjang Anda masih kosong");
+        cartListProducts.innerHTML = "";
+    } else {
+
+        let i = 1; 
+        cartListProducts.innerHTML = "";
+        totalPriceProducts = 0;
+        totalPriceProductsBeforeDiscount = 0;
+        totalShipmentPrice = 0;
+        totalDiscount = 0;
+        let currentProduct;
+        cartUser.forEach((element, index, array) => {
+            listProduct.forEach((elProduct, idxProduct, arrProduct) => {
+                if (elProduct.id == element.id) {
+                    currentProduct = elProduct;
+                }
+            });
+    
+            const tempElement = document.createElement('tr');
+    
+            const productTemplate = `
+            <td>${i++}</td>
+            <td>${element.name}</td>
+            <td>${element.price}</td>
+            <td class="text-center">${element.discount} : ${element.discount_coupon}</td>
+            <td class="text-center">${getShipmentPrice(element.price)}</td>
+            <td><strong>${getFinalPriceProduct(element.price, element.discount, element.discount_coupon)}</strong></td>
+            `;
+            totalDiscount += parseInt(element.discount + element.discount_coupon);
+            totalPriceProductsBeforeDiscount += parseInt(element.price);
+            totalPriceProducts += getFinalPriceProduct(element.price, element.discount, element.discount_coupon);
+            totalShipmentPrice += getShipmentPrice(element.price);
+    
+            tempElement.innerHTML = productTemplate;
+            tempElement.id = `cartProduct${element.id}`;
+            cartListProducts.appendChild(tempElement);
+        })
+    
+        // Summary last row
+        const tempElement = document.createElement('tr');
+    
+        const productTemplate = `
+        <td colspan="2" class="text-right"><strong>Summary</strong></td>
+        <td class="text-primary text-center"><strong>${totalPriceProductsBeforeDiscount}</strong></td>
+        <td class="text-primary text-center"><strong>${totalDiscount}</strong></td>
+        <td class="text-primary text-center"><strong>${totalShipmentPrice}</strong></td>
+        <td class="text-primary "><strong>${totalPriceProducts + totalShipmentPrice}</strong></td>
+        `;
+    
+        tempElement.innerHTML = productTemplate;
+        tempElement.id = `cartSummary`;
+        cartListProducts.appendChild(tempElement);
+    
+        cartTotalDiscount.innerHTML = totalDiscount;
+        cartTotalShipment.innerHTML = totalShipmentPrice;
+        cartTotalPrice.innerHTML = totalPriceProductsBeforeDiscount;
+        cartFinalPrice.innerHTML = (totalPriceProducts + totalShipmentPrice);
+    }
+
+}
+
+function valueCoupon(stringCode, indexProduct) {
+    let valueCoupon;
+    switch (stringCode) {
+        case "TOKPED1111":
+            valueCoupon = 11;
+            break;
+        case "BELANJAHAPPY" :
+            valueCoupon = 20;
+            break;
+        default:
+            valueCoupon = 0;
+            break;
+    }
+
+    listProduct[indexProduct].setCoupon(valueCoupon);
+}
+
+getFinalPriceProduct = (price, discount, coupon) => {
+    return price - (discount + coupon);
+}
+
+getShipmentPrice = (price) => {
+    let shipmentPrice;
+    switch (price) {
+        case (price > 10 && price < 20):
+            shipmentPrice = 10;
+            break;
+        case (price > 20 && price < 30):
+            shipmentPrice = 20;
+            break;
+        case (price > 30 && price < 50):
+            shipmentPrice = 30;
+            break;
+        case (price > 60 && price < 100):
+            shipmentPrice = 40;
+            break;
+        case (price > 100):
+        default:
+            shipmentPrice = 50;
+            break;
+    }
+
+    return shipmentPrice;
+}
+
+function checkout() {
+    let message = `
+        Anda berhasil checkout ${cartUser.length} Produk, dengan total biaya $ ${totalShipmentPrice + totalPriceProducts}
+    `;
+    alert(message);
+    cartUser = [];
+    cartListProducts.innerHTML = 0;
+    localStorage.setItem(`cart-${username}`, '');
+    totalDiscount = 0;
+    totalPriceProducts = 0;
+    totalPriceProductsBeforeDiscount = 0;
+    totalShipmentPrice = 0;
+    cartTotalDiscount.innerHTML = "";
+    cartTotalPrice.innerHTML = "";
+    cartTotalShipment.innerHTML = "";
+    cartFinalPrice.innerHTML = "";
 }
